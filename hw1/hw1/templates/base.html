@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+    <title>{% block title %}Главная страница{% endblock %}</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <ul class="nav nav-pills justify-content-end align-items-end">
+          <li class="nav-item"><a href='{% url "index" %}'class="nav-link">На главную</a></li>
+          <li class="nav-item"><a href='{% url "about" %}' class="nav-link">О себе</a></li>
+    </ul>
+
+    {% block content %}{% endblock  %}
+
+    
+
+    <div class="container">
+        <div class="row fixed-bottom modal-footer">
+        <hr>
+        </div>
+    </div>
+</body>
+</html>
