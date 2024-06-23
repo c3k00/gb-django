@@ -20,12 +20,23 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
+    # Клиенты
     path('clients/', views.clients_list, name='clients_list'),
+    path('clients/<int:id>/', views.client_detail, name='client_detail'),
     path('clients/create/', views.create_client, name='create_client'),
+    path('clients/edit/<int:client_id>/', views.edit_client, name='edit_client'),
+    path('clients/delete/<int:client_id>/', views.delete_client, name='delete_client'),
+
+    # Продукты
     path('products/', views.products_list, name='products_list'),
+    path('products/<int:id>/', views.product_detail, name='product_detail'),
     path('products/create/', views.create_product, name='create_product'),
+    path('products/edit/<int:product_id>/', views.edit_product, name='edit_product'),
+    path('products/delete/<int:product_id>/', views.delete_product, name='delete_product'),
+
+    # Заказы
     path('orders/', views.orders_list, name='orders_list'),
     path('orders/create/', views.create_order, name='create_order'),
-    path('orders/<int:order_id>/', views.order_detail, name='order_detail'),
-    path('products/<int:product_id>/', views.product_detail, name='product_detail'),
+    path('orders/edit/<int:order_id>/', views.edit_order, name='edit_order'),
+    path('orders/delete/<int:order_id>/', views.delete_order, name='delete_order'),
 ]

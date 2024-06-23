@@ -3,17 +3,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}My Shop{% endblock %}</title>
+    <title>{% block title %}Магазин{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
 </head>
 <body>
     <header>
-        <h1>My Shop</h1>
+        <h1>Магазин</h1>
         <nav>
             <ul>
-                <li><a href="{% url 'clients_list' %}">Clients</a></li>
-                <li><a href="{% url 'products_list' %}">Products</a></li>
-                <li><a href="{% url 'orders_list' %}">Orders</a></li>
+                <li><a href="{% url 'clients_list' %}">Клиенты</a></li>
+                <li><a href="{% url 'products_list' %}">Товары</a></li>
+                <li><a href="{% url 'orders_list' %}">Заказы</a></li>
             </ul>
         </nav>
     </header>
@@ -22,7 +22,7 @@
         {% endblock %}
     </main>
     <footer>
-        <p>&copy; 2024 My Shop</p>
+        <p>&copy; 2024 Магазин</p>
     </footer>
 </body>
 </html>
