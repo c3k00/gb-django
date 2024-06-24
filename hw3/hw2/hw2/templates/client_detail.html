@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Детали клиента{% endblock %}
+
+{% block content %}
+<h1>Детали клиента</h1>
+<p>Имя: {{ client.name }}</p>
+<p>Email: {{ client.email }}</p>
+<p>Телефон: {{ client.phone }}</p>
+<a href="{% url 'clients_list' %}">Назад к списку клиентов</a>
+{% endblock %}
