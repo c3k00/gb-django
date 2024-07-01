@@ -1,10 +1,15 @@
+from time import timezone
 from django.db import models
+from django.utils import timezone
+#import datetime
 
 class Client(models.Model):
     """Модель клиента"""
     name = models.CharField(max_length=255)
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=20)
+    address = models.CharField(max_length=255, blank=True, null=True)
+    registration_date = models.DateField(default=timezone.now)
 
     def __str__(self):
         return self.name
@@ -14,10 +19,12 @@ class Product(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
+    quantity = models.IntegerField()
+    added_date = models.DateField(default=timezone.now)
 
     def __str__(self):
         return self.name
-
+    
 class Order(models.Model):
     """Модель заказа"""
     client = models.ForeignKey(Client, on_delete=models.CASCADE)

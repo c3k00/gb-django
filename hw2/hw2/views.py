@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Client, Product, Order, OrderItem
-from .forms import ClientForm
+from .forms import ClientForm, ProductForm
 def index(request):
     context = {
         "title": "Главная страница",
@@ -51,27 +51,29 @@ def products_list(request):
     return render(request, 'products_list.html', {'products': products})
 
 def product_detail(request, id):
-    products = get_object_or_404(Client, id=id)
-    return render(request, 'products_detail.html', {'products': products})
+    product = get_object_or_404(Product, id=id)
+    return render(request, 'product_detail.html', {'product': product})
 
 def create_product(request):
     if request.method == 'POST':
-        name = request.POST['name']
-        description = request.POST['description']
-        price = request.POST['price']
-        Product.objects.create(name=name, description=description, price=price)
-        return redirect('products_list')
-    return render(request, 'create_product.html')
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('products_list')
+    else:
+        form = ProductForm()
+    return render(request, 'create_product.html', {'form': form})
 
 def edit_product(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     if request.method == 'POST':
-        product.name = request.POST['name']
-        product.description = request.POST['description']
-        product.price = request.POST['price']
-        product.save()
-        return redirect('products_list')
-    return render(request, 'edit_product.html', {'product': product})
+        form = ProductForm(request.POST, instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect('products_list')
+    else:
+        form = ProductForm(instance=product)
+    return render(request, 'edit_product.html', {'form': form})
 
 def delete_product(request, product_id):
     product = get_object_or_404(Product, id=product_id)

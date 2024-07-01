@@ -1,10 +1,11 @@
 {% extends "base.html" %}
+
 {% block content %}
-<h1>Create Client</h1>
+<h1>Создать клиента</h1>
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Create Client</button>
+    <button type="submit">Сохранить</button>
 </form>
-<a href="{% url 'clients_list' %}">Back to Clients List</a>
+<a href="{% url 'clients_list' %}">Назад к списку</a>
 {% endblock %}

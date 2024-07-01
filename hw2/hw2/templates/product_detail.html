@@ -1,9 +1,15 @@
 {% extends "base.html" %}
+
 {% block content %}
-<h1>Product Details</h1>
-<p>Product ID: {{ product.id }}</p>
-<p>Name: {{ product.name }}</p>
-<p>Description: {{ product.description }}</p>
-<p>Price: ${{ product.price }}</p>
-<a href="{% url 'products_list' %}">Back to Products List</a>
+<h1>{{ product.name }}</h1>
+<p>Описание: {{ product.description }}</p>
+<p>Цена: {{ product.price }} руб.</p>
+<p>Количество: {{ product.quantity }}</p>
+<p>Дата добавления: {{ product.added_date }}</p>
+<a href="{% url 'edit_product' product.id %}">Редактировать</a>
+<form method="post" action="{% url 'delete_product' product.id %}">
+    {% csrf_token %}
+    <button type="submit">Удалить</button>
+</form>
+<a href="{% url 'products_list' %}">Назад к списку</a>
 {% endblock %}
